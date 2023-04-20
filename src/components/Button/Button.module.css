@@ -1,0 +1,49 @@
+.Button{
+    border-radius: 50px;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+}
+
+.Button:hover{
+    transition: 0.1s ease;
+    background: transparent;
+}
+
+.Red{
+    background: #cb1414;
+    outline: 1px solid #cb1414;
+    color: white;
+}
+
+.Red:hover{
+    color: black;
+}
+
+.Blue{
+    background: #1c80db;
+    color: white;
+    outline: 1px solid #1c80db;
+}
+
+.Blue:hover{
+    color: black;
+}
+
+.Orange{
+    background: #ff4500;
+    color: white;
+    outline: 1px solid #ff4500;
+
+}
+
+.White{
+    color: black;
+    background: #FFFFFF;
+    outline: 1px solid #FFFFFF;
+}
+
+.Transparent{
+    color: white;
+    background: transparent;
+    outline: 1px solid white;
+}

@@ -1,0 +1,10 @@
+.RegisterPage{
+    background-image: url('../../images/auth_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Form{
+    background: #868686cc;
+    backdrop-filter: blur(3px);
+}
