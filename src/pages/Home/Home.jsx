@@ -15,7 +15,7 @@ export const Home = () => {
     return (
         <section className={styles.MainSection}>
             <Header/>
-            <section className={'pt-10 pb-12'}>
+            <section className={'pt-10 pb-12 flex flex-col items-center'}>
                 {
                     photoSrcObj.map(src => {
                         return <Post photoSrc={src}/>
