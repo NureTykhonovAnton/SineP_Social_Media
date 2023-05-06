@@ -6,9 +6,25 @@ import AddIcon from '@mui/icons-material/Add';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import {useState, useRef} from "react";
+import {useNavigate} from "react-router";
+import {CHAT_ROUTE, DISCOVER_ROUTE, HOME_ROUTE} from "../../../uutils/consts";
 
 export const MobileNavigationFooter = () => {
     const [value, setValue] = useState(0);
+    const navigate = useNavigate();
+
+    const handleDiscoverNavigate = () => {
+        navigate(DISCOVER_ROUTE);
+    }
+
+    const handleHomeNavigate = () => {
+        navigate(HOME_ROUTE);
+    }
+
+    const handleChatNavigate = () => {
+        navigate(CHAT_ROUTE);
+    }
+
 
     return (
         <Paper sx={{
@@ -16,6 +32,7 @@ export const MobileNavigationFooter = () => {
             bottom: 0,
             left: 0,
             right: 0,
+            zIndex: 1000
         }}
                elevation={3}
         >
@@ -38,6 +55,7 @@ export const MobileNavigationFooter = () => {
                                             },
                                             minWidth: '1rem'
                                         }}
+                                        onClick={handleHomeNavigate}
                 />
                 <BottomNavigationAction label="Discover" icon={<ExploreIcon/>}
                                         sx={{
@@ -47,6 +65,7 @@ export const MobileNavigationFooter = () => {
                                             },
                                             minWidth: '1rem'
                                         }}
+                                        onClick={handleDiscoverNavigate}
                 />
                 <BottomNavigationAction label="Create" icon={<AddIcon/>}
                                         sx={{
@@ -65,6 +84,7 @@ export const MobileNavigationFooter = () => {
                                             },
                                             minWidth: '1rem'
                                         }}
+                                        onClick={handleChatNavigate}
                 />
                 <BottomNavigationAction label="Inbox" icon={
                     <Badge badgeContent={4} color={'primary'} max={99}

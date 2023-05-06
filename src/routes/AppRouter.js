@@ -4,6 +4,7 @@ import {HOME_ROUTE, LOGIN_ROUTE} from "../uutils/consts";
 import {useContext, useEffect} from "react";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
+import {Layout} from "./Layout";
 
 const AppRouter = observer(() => {
     const {user} = useContext(Context);
@@ -38,11 +39,13 @@ const AppRouter = observer(() => {
                     return <Route key={path} path={path} element={<Component/>}/>
                 })
             }
-            {
-                token && privateRoutes.map(({path, Component}) => {
-                    return <Route key={path} path={path} element={<Component/>} exact={true}/>
-                })
-            }
+            <Route path={'/'} element={<Layout/>}>
+                {
+                    token && privateRoutes.map(({path, Component}) => {
+                        return <Route key={path} path={path} element={<Component/>} exact={true}/>
+                    })
+                }
+            </Route>
         </Routes>
     );
 });
