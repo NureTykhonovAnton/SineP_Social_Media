@@ -1,7 +1,7 @@
 import {
     CHAT_ROUTE,
     DISCOVER_ROUTE,
-    HOME_ROUTE,
+    HOME_ROUTE, INBOX_ROUTE,
     LOGIN_ROUTE,
     PROFILE_ROUTE,
     REGISTER_ROUTE,
@@ -14,6 +14,7 @@ import {Settings} from "../pages/Settings/Settings";
 import {Profile} from "../pages/Profile/Profile";
 import {Discover} from "../pages/Discover/Discover";
 import {Chat} from "../pages/Chat/Chat";
+import {Inbox} from "../pages/Inbox/Inbox";
 
 export const publicRoutes = [
     {
@@ -46,5 +47,9 @@ export const privateRoutes = [
     {
         path: CHAT_ROUTE,
         Component: Chat
+    },
+    {
+        path: INBOX_ROUTE,
+        Component: Inbox
     },
 ]

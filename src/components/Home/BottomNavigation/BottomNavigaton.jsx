@@ -7,7 +7,7 @@ import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import {useState, useRef} from "react";
 import {useNavigate} from "react-router";
-import {CHAT_ROUTE, DISCOVER_ROUTE, HOME_ROUTE} from "../../../uutils/consts";
+import {CHAT_ROUTE, DISCOVER_ROUTE, HOME_ROUTE, INBOX_ROUTE} from "../../../uutils/consts";
 
 export const MobileNavigationFooter = () => {
     const [value, setValue] = useState(0);
@@ -23,6 +23,10 @@ export const MobileNavigationFooter = () => {
 
     const handleChatNavigate = () => {
         navigate(CHAT_ROUTE);
+    }
+
+    const handleInboxNavigate = () => {
+        navigate(INBOX_ROUTE);
     }
 
 
@@ -77,7 +81,7 @@ export const MobileNavigationFooter = () => {
                                         }}
                 />
                 <BottomNavigationAction label="Chat" icon={<ChatOutlinedIcon/>}
-                                       sx={{
+                                        sx={{
                                             color: '#4d4d4d',
                                             '&.Mui-selected': {
                                                 color: 'white'
@@ -87,19 +91,20 @@ export const MobileNavigationFooter = () => {
                                         onClick={handleChatNavigate}
                 />
                 <BottomNavigationAction label="Inbox" icon={
-                    <Badge badgeContent={4} color={'primary'} max={99}
-                        sx={{
-                            '& .MuiBadge-badge': {
-                                bgcolor: '#F73F08',
-                                color: 'white',
-                                p: '0 0.2rem',
-                                height: '1rem'
-                            },
-                        }}
+                    <Badge badgeContent={12} color={'primary'} max={99}
+                           sx={{
+                               '& .MuiBadge-badge': {
+                                   bgcolor: '#F73F08',
+                                   color: 'white',
+                                   p: '0 0.2rem',
+                                   height: '1rem'
+                               },
+                           }}
                     >
                         <NotificationsOutlinedIcon/>
                     </Badge>
                 }
+                                        onClick={handleInboxNavigate}
                                         sx={{
                                             color: '#4d4d4d',
                                             '&.Mui-selected': {

@@ -11,3 +11,5 @@ export const PROFILE_ROUTE = '/profile';
 export const DISCOVER_ROUTE = '/discover';
 
 export const CHAT_ROUTE = '/chat';
+
+export const INBOX_ROUTE = '/inbox';
