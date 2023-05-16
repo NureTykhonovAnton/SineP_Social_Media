@@ -6,6 +6,7 @@ import {ChoosePostPlace} from "../../components/Add/ChoosePostPlace/ChoosePostPl
 export const Add = () => {
     const [page, setPage] = useState(0);
 
+
     return (
         <section
             className={'pt-12 pb-14 flex flex-col items-center justify-between bg-black flex-wrap w-full h-[100vh]'}>
