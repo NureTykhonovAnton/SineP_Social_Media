@@ -41,10 +41,15 @@ export const ChatUser = ({name, message, status, img = ''}) => {
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                             variant="dot"
+                            sx={{
+                                '& .MuiBadge-badge': {
+                                    zIndex: 10
+                                }
+                            }}
                         >
                             <Avatar alt={name}
                             sx={{
-                                zIndex: 10
+                                zIndex: 5
                             }}
                             />
                         </StyledBadge>
@@ -52,7 +57,7 @@ export const ChatUser = ({name, message, status, img = ''}) => {
                         <Avatar
                             alt={name}
                             sx={{
-                                zIndex: 10
+                                zIndex: 5
                             }}
                         />
                 }
