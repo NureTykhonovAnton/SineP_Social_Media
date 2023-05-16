@@ -4,7 +4,7 @@ import {useState} from "react";
 import {ChoosePostPlace} from "../../components/Add/ChoosePostPlace/ChoosePostPlace";
 
 export const Add = () => {
-    const [page, setPsage] = useState(0);
+    const [page, setPage] = useState(0);
 
     return (
         <section
@@ -13,7 +13,7 @@ export const Add = () => {
                 page === 0 ?
                     <>
                         <div className={'flex flex-col'}>
-                            <HeaderGroup setPage={setPsage}/>
+                            <HeaderGroup setPage={setPage}/>
                             <main>
                             <textarea placeholder={'BODY'}
                                       className={'outline-0 border-0 h-full resize-none ' +
@@ -25,7 +25,7 @@ export const Add = () => {
                     </>
                     :
                     <>
-                        <ChoosePostPlace setPage={setPsage}/>
+                        <ChoosePostPlace setPage={setPage}/>
                     </>
             }
 
