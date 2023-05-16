@@ -7,7 +7,7 @@ import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import {useState, useRef} from "react";
 import {useNavigate} from "react-router";
-import {CHAT_ROUTE, DISCOVER_ROUTE, HOME_ROUTE, INBOX_ROUTE} from "../../../uutils/consts";
+import {ADD_ROUTE, CHAT_ROUTE, DISCOVER_ROUTE, HOME_ROUTE, INBOX_ROUTE} from "../../../uutils/consts";
 
 export const MobileNavigationFooter = () => {
     const [value, setValue] = useState(0);
@@ -29,6 +29,9 @@ export const MobileNavigationFooter = () => {
         navigate(INBOX_ROUTE);
     }
 
+    const handleAddNavigate = () => {
+        navigate(ADD_ROUTE);
+    }
 
     return (
         <Paper sx={{
@@ -79,6 +82,7 @@ export const MobileNavigationFooter = () => {
                                             },
                                             minWidth: '1rem'
                                         }}
+                                        onClick={handleAddNavigate}
                 />
                 <BottomNavigationAction label="Chat" icon={<ChatOutlinedIcon/>}
                                         sx={{
