@@ -26,6 +26,7 @@ class UserController {
             profile_description
         } = req.body
 
+
         const candidate = await User.findOne({where: {nickname}})
         if (candidate) {
             return next(ApiError.badRequest('User is existing'))

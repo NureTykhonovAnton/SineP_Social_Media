@@ -6,6 +6,8 @@ const User = sequelize.define('user', {
     name: {type: DataTypes.STRING},
     surname: {type: DataTypes.STRING},
     nickname: {type: DataTypes.STRING, unique: true},
+    phone: {type: DataTypes.STRING, required: true},
+    email: {type: DataTypes.STRING, required: true},
     password: {type: DataTypes.STRING},
     birthday: {type: DataTypes.INTEGER},
     country: {type: DataTypes.STRING},
@@ -63,8 +65,11 @@ const Post = sequelize.define('post', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     description: {type: DataTypes.STRING},
     isNSFW: {type: DataTypes.BOOLEAN},
-    likes: {type: DataTypes.ARRAY(DataTypes.INTEGER)},
-    dislikes: {type: DataTypes.ARRAY(DataTypes.INTEGER)}
+    photo: {type: DataTypes.STRING, required: false},
+    creator_type: {type: DataTypes.STRING, required: true, default: 'user'},
+    creatorId: {type: DataTypes.INTEGER, required: true},
+    likes: {type: DataTypes.ARRAY(DataTypes.INTEGER), default: []},
+    dislikes: {type: DataTypes.ARRAY(DataTypes.INTEGER), default: []}
 })
 
 const PostThread = sequelize.define('post_thread', {
