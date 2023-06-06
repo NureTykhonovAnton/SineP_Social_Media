@@ -21,6 +21,8 @@ class UserController {
             birthday,
             country,
             city,
+            phone,
+            email,
             genderId,
             avatar,
             profile_description
@@ -39,9 +41,11 @@ class UserController {
                 surname,
                 nickname,
                 password: hashPassword,
-                birthday,
+                birthday: Date.parse(birthday),
                 country,
                 genderId,
+                phone,
+                email,
                 city,
                 avatar,
                 profile_description
@@ -57,7 +61,7 @@ class UserController {
         });
 
         const token = generateJwt(user.id, user.email, user.role);
-        return res.json({token});
+        return res.json({user, token});
 
     }
 

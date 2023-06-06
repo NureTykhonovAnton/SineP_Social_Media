@@ -10,7 +10,6 @@ export const Inbox = () => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(value);
     };
 
     return (

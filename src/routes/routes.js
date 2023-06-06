@@ -39,10 +39,6 @@ export const privateRoutes = [
         Component: Profile
     },
     {
-        path: SETTINGS_ROUTE,
-        Component: Settings
-    },
-    {
         path: DISCOVER_ROUTE,
         Component: Discover
     },
