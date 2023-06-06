@@ -12,8 +12,21 @@ import {observer} from "mobx-react-lite";
 export const Login = observer(() => {
     const {user} = useContext(Context);
 
-    const [loginValue, setLoginValue] = useState(0);
-    const [passwordValue, setPasswordValue] = useState(0);
+
+    const [userObj, setUserObj] = useState({
+        nickname: '',
+        password: ''
+    });
+
+    const handleInputChange = (e, key) => {
+        const {value} = e.target;
+        setUserObj(prevState => {
+            return {
+                ...prevState,
+                [key]: value
+            }
+        })
+    }
 
     const navigate = useNavigate();
 
@@ -25,9 +38,12 @@ export const Login = observer(() => {
         navigate(HOME_ROUTE);
     }
 
-    const handleLoginClick = () => {
-        user.setAuth(true);
-        navigateToHomePage();
+    const handleLoginClick = async () => {
+        const res = await user.login(userObj)
+        console.log(res);
+        if(res){
+            navigateToHomePage();
+        }
     }
 
 
@@ -50,6 +66,8 @@ export const Login = observer(() => {
                                     'color': 'black'
                                 }
                             }}
+                            value={userObj.nickname}
+                            onChange={(e) => handleInputChange(e, 'nickname')}
                         />
                         <TextField
                             label={'Password'}
@@ -61,6 +79,8 @@ export const Login = observer(() => {
                                     'color': 'black'
                                 }
                             }}
+                            value={userObj.password}
+                            onChange={(e) => handleInputChange(e, 'password')}
                         />
                     </div>
                     <AuthButtonGroup signIn={false}

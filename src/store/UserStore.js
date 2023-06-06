@@ -1,9 +1,9 @@
 import {makeAutoObservable} from 'mobx'
-import {registration} from "../http/userApi";
+import {login, registration} from "../http/userApi";
 
 export class UserStore {
     constructor() {
-        this._isAuth = false;
+        this._isAuth = true;
         this._user = {};
 
         makeAutoObservable(this);
@@ -21,6 +21,18 @@ export class UserStore {
         const data = await registration(user);
         this.setUser(data.user);
         this.setAuth(true);
+    }
+
+    async login(user) {
+        const data = await login(user);
+        console.log(data)
+        if(data){
+            this.setUser(data.token);
+            this.setAuth(true);
+            return true;
+        }
+
+        return false;
     }
 
     getAuth() {

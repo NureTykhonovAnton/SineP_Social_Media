@@ -1,6 +1,6 @@
 import {
     ADD_ROUTE,
-    CHAT_ROUTE,
+    CHAT_ROUTE, CREATE_COMMUNITY_ROUTE,
     DISCOVER_ROUTE,
     HOME_ROUTE, INBOX_ROUTE,
     LOGIN_ROUTE,
@@ -17,6 +17,7 @@ import {Discover} from "../pages/Discover/Discover";
 import {Chat} from "../pages/Chat/Chat";
 import {Inbox} from "../pages/Inbox/Inbox";
 import {Add} from "../pages/Add/Add";
+import {CreateCommunity} from "../pages/CreateCommunity/CreateCommunity";
 
 export const publicRoutes = [
     {
@@ -53,5 +54,9 @@ export const privateRoutes = [
     {
         path: ADD_ROUTE,
         Component: Add
+    },
+    {
+        path: CREATE_COMMUNITY_ROUTE,
+        Component: CreateCommunity
     },
 ]

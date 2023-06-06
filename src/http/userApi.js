@@ -10,10 +10,15 @@ export const registration = async (dataObj) => {
     };
 }
 
-export const login = async (email, password) => {
-    const {data} = await $host.post(LOGIN_URL, {email, password});
-    localStorage.setItem('token', data.token);
-    return jwtDecode(data.token);
+export const login = async (dataObj) => {
+    try{
+        const {data} = await $host.post(LOGIN_URL, dataObj);
+        localStorage.setItem('token', data.token);
+        return jwtDecode(data.token);
+    } catch (e) {
+        console.log(e);
+        alert(e.message);
+    }
 }
 
 export const check = async () => {

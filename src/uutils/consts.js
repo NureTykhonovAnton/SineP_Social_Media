@@ -15,3 +15,5 @@ export const CHAT_ROUTE = '/chat';
 export const INBOX_ROUTE = '/inbox';
 
 export const ADD_ROUTE = '/add';
+
+export const CREATE_COMMUNITY_ROUTE = '/create_community'

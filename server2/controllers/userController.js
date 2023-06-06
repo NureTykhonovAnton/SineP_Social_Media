@@ -66,10 +66,10 @@ class UserController {
     }
 
     async login(req, res, next) {
-        const {email, password} = req.body;
-        const user = await User.findOne({where: {email}})
+        const {nickname, password} = req.body;
+        const user = await User.findOne({where: {nickname}})
         if (!user) {
-            return next(ApiError.internal('No user with such email'));
+            return next(ApiError.internal('No user with such login'));
         }
 
         const comparePassword = bcrypt.compareSync(password, user.password)

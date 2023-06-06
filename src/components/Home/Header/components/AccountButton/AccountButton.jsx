@@ -9,18 +9,34 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import {CREATE_COMMUNITY_ROUTE} from "../../../../../uutils/consts";
+import {useNavigate} from "react-router";
 
 export default function AccountButton({src}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate();
+
     const open = Boolean(anchorEl);
+    const navigationObj = {
+        createCommunity: CREATE_COMMUNITY_ROUTE,
+    };
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleNavigate = (route) => {
+        navigate(route);
+    }
+
     return (
         <React.Fragment>
             <Tooltip title="Account settings">
@@ -80,10 +96,44 @@ export default function AccountButton({src}) {
                 anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
                 <MenuItem onClick={handleClose}>
-                    <Avatar/> Profile
+                    <ListItemIcon sx={{
+                        color: 'white'
+                    }}>
+                        <AccountButton/>
+                    </ListItemIcon>
+                    My Account
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <Avatar/> My account
+                    <ListItemIcon sx={{
+                    }}>
+                        <div className={'inline-block rounded-[50%] bg-green-500 w-5 h-5'}></div>
+                    </ListItemIcon>
+                     Online
+                </MenuItem>
+
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon sx={{
+                        color: 'white'
+                    }}>
+                        <SettingsOutlinedIcon/>
+                    </ListItemIcon>
+                     Settings
+                </MenuItem>
+                <MenuItem onClick={() => handleNavigate(navigationObj.createCommunity)}>
+                    <ListItemIcon sx={{
+                        color: 'white'
+                    }}>
+                        <GroupAddOutlinedIcon/>
+                    </ListItemIcon>
+                    Create new community
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon sx={{
+                        color: 'white'
+                    }}>
+                        <ExploreOutlinedIcon/>
+                    </ListItemIcon>
+                    Proxy chat
                 </MenuItem>
                 <Divider
                     sx={{
@@ -95,23 +145,7 @@ export default function AccountButton({src}) {
                     <ListItemIcon sx={{
                         color: 'white'
                     }}>
-                        <PersonAdd fontSize="small"/>
-                    </ListItemIcon>
-                    Add another account
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon sx={{
-                        color: 'white'
-                    }}>
-                        <Settings fontSize="small"/>
-                    </ListItemIcon>
-                    Settings
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon sx={{
-                        color: 'white'
-                    }}>
-                        <Logout fontSize="small"/>
+                        <Logout/>
                     </ListItemIcon>
                     Logout
                 </MenuItem>
