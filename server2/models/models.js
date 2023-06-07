@@ -33,7 +33,8 @@ const Group = sequelize.define('group', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     name: {type: DataTypes.STRING, unique: true},
     description: {type: DataTypes.STRING},
-    members_count: {type: DataTypes.INTEGER, require: false},
+    bannerImg: {type: DataTypes.STRING},
+    members_count: {type: DataTypes.INTEGER, require: false, default: 0},
 })
 
 const GroupSettings = sequelize.define('group_settings', {
@@ -44,8 +45,8 @@ const GroupSettings = sequelize.define('group_settings', {
 
 const UserGroup = sequelize.define('user_group', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
-    mutated_duration: {type: DataTypes.INTEGER},
-    banned_duration: {type: DataTypes.INTEGER},
+    mutated_duration: {type: DataTypes.INTEGER, require: false, default: 0},
+    banned_duration: {type: DataTypes.INTEGER, require: false, default: 0},
 })
 
 const UserPermissions = sequelize.define('user_permissions', {
@@ -93,9 +94,20 @@ const UserAction = sequelize.define('user_action', {
     action_type: {type: DataTypes.STRING}
 })
 
+const Inbox = sequelize.define('inbox', {
+    id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
+    isRead: {type: DataTypes.BOOLEAN, default: false},
+    content: {type: DataTypes.STRING},
+    type: {type: DataTypes.STRING},
+    userId: {type: DataTypes.INTEGER}
+})
+
 
 Gender.hasMany(User);
 User.belongsTo(Gender);
+
+Inbox.hasMany(User);
+User.belongsTo(Inbox);
 
 UserSettings.hasMany(User);
 User.belongsTo(UserSettings);
@@ -132,5 +144,6 @@ module.exports = {
     Post,
     PostThread,
     PostComment,
-    UserAction
+    UserAction,
+    Inbox
 }

@@ -1,12 +1,12 @@
 const Router = require('express');
-const genderRouter = require('../controllers/genderController');
+const genderController = require('../controllers/genderController');
 const authMiddleware = require('../middleware/authMiddleware')
 
 const router = new Router();
 
-router.post('/', authMiddleware, genderRouter.create);
-router.get('/', genderRouter.getAll);
-router.put('/:id', authMiddleware, genderRouter.change)
+router.post('/', authMiddleware, genderController.create);
+router.get('/', genderController.getAll);
+router.put('/:id', authMiddleware, genderController.change)
 
 
 module.exports = router;

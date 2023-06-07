@@ -86,7 +86,6 @@ class PostController {
         }
 
 
-
         try {
             await Post.update({
                 dislikes: [...post.dislikes, userId],
@@ -105,9 +104,16 @@ class PostController {
 
     async getOnePost(req, res, next) {
         const {id} = req.params;
+        const {creator_type} = req.body;
+
 
         try {
-            const post = await Post.findOne({id: id})
+            const post = await Post.findOne({
+                where: {
+                    id,
+                    creator_type
+                }
+            })
             if (!post) {
                 return next(ApiError.badRequest('Post doesn\'t exist'))
             }
@@ -128,7 +134,7 @@ class PostController {
         try {
             const posts = await Post.findAll();
             const filteredPosts = posts.filter(post => {
-                return (+post.creatorId === +userId)&& (post.creator_type === type);
+                return (+post.creatorId === +userId) && (post.creator_type === type);
             })
 
             res.status(200).json({posts: filteredPosts})

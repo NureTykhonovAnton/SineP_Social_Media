@@ -1,11 +1,11 @@
 const ApiError = require('../error/ApiError')
-const {User} = require('../models/models')
+const {User, UserSettings} = require('../models/models')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const generateJwt = (id, email, role) => {
+const generateJwt = (user) => {
     return jwt.sign(
-        {id, email, role},
+        {user},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -28,6 +28,13 @@ class UserController {
             profile_description
         } = req.body
 
+        const userSettings = await UserSettings.create({
+            nsfw: false,
+            politic: false,
+            language: 'en',
+            font_size: 'Default'
+        })
+
 
         const candidate = await User.findOne({where: {nickname}})
         if (candidate) {
@@ -48,20 +55,17 @@ class UserController {
                 email,
                 city,
                 avatar,
-                profile_description
+                profile_description,
+                userSettingId: userSettings.id
             }
         )
 
-        const newUser = await User.update({
-            userSettingsId: user.id
-        }, {
-            where: {
-                id: user.id
-            }
-        });
+        const clone = Object.assign({}, user);
+        delete clone.password;
+        delete clone.userSettingId;
 
-        const token = generateJwt(user.id, user.email, user.role);
-        return res.json({user, token});
+        const token = generateJwt(clone);
+        return res.json({token});
 
     }
 
@@ -77,7 +81,11 @@ class UserController {
             return next(ApiError.internal('Incorrect password'));
         }
 
-        const token = generateJwt(user.id, user.email, user.role)
+        const clone = Object.assign({}, user);
+        delete clone.password;
+        delete clone.userSettingId;
+
+        const token = generateJwt(clone)
         return res.json({token})
     }
 
