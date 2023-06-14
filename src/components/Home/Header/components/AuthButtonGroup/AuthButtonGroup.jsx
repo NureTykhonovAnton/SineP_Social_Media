@@ -7,6 +7,7 @@ import AccountButton from "../AccountButton/AccountButton";
 
 
 
+
 export const AuthButtonGroup = ({handleSearchClick, avatar}) => {
     const [search, setSearch] = useState('')
 

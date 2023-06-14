@@ -13,16 +13,20 @@ import Logout from '@mui/icons-material/Logout';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
-import {CREATE_COMMUNITY_ROUTE} from "../../../../../uutils/consts";
+import {CREATE_COMMUNITY_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE} from "../../../../../uutils/consts";
 import {useNavigate} from "react-router";
+import {Context} from "../../../../../index";
+import {useContext} from "react";
 
 export default function AccountButton({src}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const {user} = useContext(Context);
     const navigate = useNavigate();
 
     const open = Boolean(anchorEl);
     const navigationObj = {
         createCommunity: CREATE_COMMUNITY_ROUTE,
+        profile: PROFILE_ROUTE
     };
 
     const handleClick = (event) => {
@@ -36,6 +40,14 @@ export default function AccountButton({src}) {
     const handleNavigate = (route) => {
         navigate(route);
     }
+
+    const handleLogoutClick = () => {
+        user.setAuth(false);
+        localStorage.removeItem('token');
+        handleNavigate(LOGIN_ROUTE);
+    };
+
+
 
     return (
         <React.Fragment>
@@ -95,7 +107,7 @@ export default function AccountButton({src}) {
                 transformOrigin={{horizontal: 'right', vertical: 'top'}}
                 anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => handleNavigate(navigationObj.profile)}>
                     <ListItemIcon sx={{
                         color: 'white'
                     }}>
@@ -141,7 +153,7 @@ export default function AccountButton({src}) {
                     }}
                     variant={'middle'}
                 />
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogoutClick}>
                     <ListItemIcon sx={{
                         color: 'white'
                     }}>

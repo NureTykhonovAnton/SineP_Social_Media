@@ -65,6 +65,7 @@ const UserPermissions = sequelize.define('user_permissions', {
 const Post = sequelize.define('post', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     description: {type: DataTypes.STRING},
+    title: {type: DataTypes.STRING},
     isNSFW: {type: DataTypes.BOOLEAN},
     photo: {type: DataTypes.STRING, required: false},
     creator_type: {type: DataTypes.STRING, required: true, default: 'user'},

@@ -2,7 +2,7 @@ import {Button} from "@mui/material";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import Divider from "@mui/material/Divider";
 
-export const AddToMyPage = () => {
+export const AddToMyPage = ({onClick}) => {
     return (
         <div className={'flex flex-col items-start w-full'}>
             <Button startIcon={<AccountBoxOutlinedIcon/>}
@@ -10,6 +10,7 @@ export const AddToMyPage = () => {
                         color: 'white',
                         width: '100%'
                     }}
+                    onClick={onClick}
             >
                 Add to My Page
             </Button>

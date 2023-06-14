@@ -39,8 +39,7 @@ export const Login = observer(() => {
     }
 
     const handleLoginClick = async () => {
-        const res = await user.login(userObj)
-        console.log(res);
+        const res = await user.login(userObj);
         if(res){
             navigateToHomePage();
         }

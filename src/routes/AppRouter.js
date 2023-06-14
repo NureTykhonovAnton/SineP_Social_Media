@@ -9,7 +9,7 @@ import {Layout} from "./Layout";
 const AppRouter = observer(() => {
     const {user} = useContext(Context);
 
-    let token = user.getAuth();
+    let token = localStorage.getItem('token');
 
     const navigate = useNavigate();
 
@@ -23,13 +23,14 @@ const AppRouter = observer(() => {
 
 
     useEffect(() => {
-        token = user.getAuth();
-        if (token) {
-            navigateToHome();
-        } else {
-            navigateToLogin();
-        }
-    }, [user])
+        user.fetchUser().then(res => {
+            if (res) {
+                navigateToHome();
+            } else {
+                navigateToLogin();
+            }
+        });
+    }, [])
 
 
     return (

@@ -11,7 +11,9 @@ class PostController {
             creatorId,
             isNSFW,
             description,
+            title
         } = req.body;
+
 
         const {photo} = req.files;
 
@@ -24,13 +26,14 @@ class PostController {
                 creatorId,
                 creator_type,
                 isNSFW,
+                title,
                 description,
                 likes: [],
                 dislikes: [],
                 photo: fileName
             })
 
-            res.status(200).json({message: 'Post created'})
+            res.status(200).json({message: 'Post created', post})
         } catch (e) {
             return next(ApiError.internal(e.message));
         }

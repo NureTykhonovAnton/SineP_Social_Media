@@ -5,7 +5,20 @@ const bcrypt = require('bcrypt')
 
 const generateJwt = (user) => {
     return jwt.sign(
-        {user},
+        {
+            id: user.id,
+            name: user.name,
+            surname: user.surname,
+            nickname: user.nickname,
+            birthday: user.birthday,
+            country: user.country,
+            genderId: user.genderId,
+            phone: user.phone,
+            email: user.email,
+            city: user.city,
+            avatar: user.avatar,
+            profile_description: user.profile_description,
+        },
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -81,17 +94,20 @@ class UserController {
             return next(ApiError.internal('Incorrect password'));
         }
 
-        const clone = Object.assign({}, user);
-        delete clone.password;
-        delete clone.userSettingId;
 
-        const token = generateJwt(clone)
+        const token = generateJwt(user)
         return res.json({token})
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, req.user.role)
-        return res.json({token})
+        const token = req.headers.authorization.split(' ')[1]
+        const decodedData = jwt.verify(token, process.env.SECRET_KEY);
+        const id = decodedData.id;
+
+        const user = await User.findOne({where: id});
+
+        const newToken = generateJwt(user)
+        return res.json({newToken})
     }
 }
 

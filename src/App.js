@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Context} from "./index";
 import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
+import {useNavigate} from "react-router";
+import {HOME_ROUTE, LOGIN_ROUTE} from "./uutils/consts";
 
 const darkTheme = createTheme({
     palette: {
@@ -12,10 +14,11 @@ const darkTheme = createTheme({
 });
 
 const App = observer(() => {
-    const {gender} = useContext(Context);
+    const {gender, user} = useContext(Context);
 
     useEffect(() => {
         gender.fetchGenders();
+        user.fetchUser();
     }, []);
 
 

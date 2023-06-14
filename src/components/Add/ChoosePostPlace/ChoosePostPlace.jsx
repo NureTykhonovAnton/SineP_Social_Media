@@ -1,12 +1,23 @@
 import {AddToCommunityPage} from "./components/AddToCommunityPage/AddToCommunityPage";
-import React from "react";
+import React, {useContext} from "react";
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import IconButton from "@mui/material/IconButton";
 import {AddToMyPage} from "./components/AddToMyPage/AddToMyPage";
+import {Context} from "../../../index";
 
-export const ChoosePostPlace = ({setPage}) => {
+export const ChoosePostPlace = ({setPage, data}) => {
+    const {post} = useContext(Context);
+
     const handleBackButton = () => {
         setPage(0);
+    };
+
+    const handleAddToMyPage = () => {
+        const formData = new FormData();
+        Object.entries(data).forEach(([key, value]) => {
+            formData.append(key, value);
+        })
+        post.add(formData);
     };
 
     return (
@@ -21,7 +32,7 @@ export const ChoosePostPlace = ({setPage}) => {
                     <ArrowBackIosNewOutlinedIcon/>
                 </IconButton>
             </div>
-            <AddToMyPage/>
+            <AddToMyPage onClick={handleAddToMyPage}/>
             <AddToCommunityPage/>
         </>
     );
